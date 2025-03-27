@@ -27,7 +27,7 @@ public class GameWorld {
         }
         while (TURN_OFF == 1) {
             System.out.println();
-            System.out.println("Where do you want to go? \n 1. To the Trader ( " + mapTrader.getName() + " ). \n 2. To the dark forest. \n 3. Exit \n To take a look at your stats - type 0.");
+            System.out.println("Where do you want to go? \n 1. To the Trader (" + mapTrader.getName() + "). \n 2. To the dark forest. \n 3. Exit \n To take a look at your stats - type 0.");
             System.out.println("Enter a number to proceed.");
             try {
                 switch (input.nextInt()) {
@@ -36,7 +36,18 @@ public class GameWorld {
                         switch (input.next()) {
                             case "Y": {
                                 player.buyPotion(mapTrader);
-                                System.out.println("You have bought one healing potion. It's time to get back on the road.");
+                                System.out.println("You have bought one healing potion. Do you want to buy more?");
+                                switch (input.next()) {
+                                    case "Y": {
+                                        player.buyPotion(mapTrader);
+                                        System.out.println("You have bought one healing potion.");
+                                        break;
+                                    }
+                                    case "N": {
+                                        System.out.println("You are moving back.");
+                                        break;
+                                    }
+                                }
                                 break;
                             }
                             case "N": {
@@ -82,13 +93,14 @@ public class GameWorld {
                         break;
                     }
                     default: {
-                        throw new IllegalArgumentException("Please, follow the instructions.");
+                        System.out.println("Please, follow the instructions.");
+                        break;
                     }
                 }
             }
             catch (InputMismatchException exception) {
                 System.out.println("Please, follow the instructions");
-                break;
+                return;
             }
         }
     }

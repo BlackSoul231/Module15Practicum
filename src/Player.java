@@ -58,9 +58,13 @@ public class Player extends Creature {
         inventory.healingPotion -= 1;
     }
 
-    public void buyPotion(Trader name) {
-        takeGold(Trader.POTION_COST);
-        inventory.healingPotion += 1;
+    public boolean buyPotion(Trader name) {
+        if (getGold() < Trader.POTION_COST) return false;
+        else {
+            takeGold(Trader.POTION_COST);
+            inventory.healingPotion += 1;
+            return true;
+        }
     }
 
     @Override
