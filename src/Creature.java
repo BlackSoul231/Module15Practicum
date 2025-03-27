@@ -30,7 +30,7 @@ public abstract class Creature implements Fighter {
     }
 
     public void receiveDamage(int damage) {
-        health = -damage;
+        health -= damage;
     }
 
     public String getName() {
@@ -98,8 +98,14 @@ public abstract class Creature implements Fighter {
     public void attack(Creature target) {
         Random successOfAttack = new Random();
         if (successOfAttack.nextInt(0,101) < (getAgility() * 3)) {
-            if (successOfAttack.nextInt(1,6) > 3) target.receiveDamage(strength * 2);
-            else target.receiveDamage(strength);
+            if (successOfAttack.nextInt(1,6) > 3) {
+                target.receiveDamage(strength * 2);
+                System.out.println("Critical blow from " + getName() + "! The " + target.getName() + " crumbles!");
+            }
+            else {
+                System.out.println(getName() + " strikes with power of " + strength+ "!");
+                target.receiveDamage(strength);
+            }
             if (!target.isDead())  System.out.println("The " + getName() + " has attacked " + target.getName() + ". Health left: " + target.getHealth() + ".");
             else System.out.println("The " + target.getName() + " has been killed by " + getName() + "!");
         }

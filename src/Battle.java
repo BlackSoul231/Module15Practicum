@@ -4,8 +4,8 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 public class Battle extends Thread {
 
-    public static Player mainCharacter;
-    public static Monster enemy;
+    public Player mainCharacter;
+    public Monster enemy;
 
     @Override
     public void run() {
@@ -19,7 +19,7 @@ public class Battle extends Thread {
                 enemy = new Goblin(GameWorld.NAMES_FOR_MONSTERS[selectionOfEnemy.nextInt(1, 8)] + " the Goblin");
             }
             try {
-                sleep(2000);
+                sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

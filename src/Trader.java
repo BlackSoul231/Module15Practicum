@@ -11,11 +11,19 @@ public class Trader extends Creature {
         ++potions;
     }
 
-    public void sellPotion() {
-        if (potions > 0) {
-            addGold(POTION_COST);
-            System.out.println("Trader has " + --potions + " left.");
-        }
-        else System.out.println("Trader has  no potions for you. Come back later.");
+    public int getPotions() {
+        return potions;
+    }
+
+    public boolean canSellPotion() {
+        return potions > 0;
+    }
+
+    public void sellPotion(int cost) {
+        if (canSellPotion()) {
+            addGold(cost);
+            --potions;
+        } else System.out.println("Trader has no potions for you. Come back later.");
+
     }
 }
