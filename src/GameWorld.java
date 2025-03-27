@@ -36,7 +36,7 @@ public class GameWorld {
                         switch (input.next()) {
                             case "Y": {
                                 player.buyPotion(mapTrader);
-                                System.out.println("You have bought one healing potion. Do you want to buy more?");
+                                System.out.println("You have bought one healing potion. Do you want to buy more? \n Type Y or N");
                                 switch (input.next()) {
                                     case "Y": {
                                         player.buyPotion(mapTrader);
@@ -59,6 +59,7 @@ public class GameWorld {
                                 break;
                             }
                         }
+                        break;
                     }
                     case 2: {
                         Battle.mainCharacter = player;
